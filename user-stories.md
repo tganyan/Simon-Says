@@ -15,3 +15,4 @@ Stretch Goals
 2. Store and compile current user high scores
 3. Create user page with all scores
 4. Give overall user ranking based on other users's scores
+5. User can speed up or slow down pattern delivery.
