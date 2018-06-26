@@ -27,3 +27,18 @@ function addUser (name, nickname) {
 }
 
 document.getElementById('user-submit').addEventListener('click', addUser(userName, userNickName))
+
+
+
+// Fake user accounts
+
+new User('Tyler Nesheim', 'MisterMudfrog')
+new User('Chris Fleming', 'BogaFlem')
+new User('Tony Garcia', 'MondragonT')
+new User('Dave Kensington', 'DAVE_CB')
+new User('Chris Eisenbraun', 'YippyTime')
+new User('Chad Pinkelman', 'StinkyPinky')
+new User('Carl Davis', 'Fatnicity')
+new User('Joey McManus', 'Baby Joe')
+new User('Trey Smick', 'Slim')
+new User('Tyler Anyan', 'MisterMiyagi')
