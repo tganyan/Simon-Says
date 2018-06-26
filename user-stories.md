@@ -8,8 +8,8 @@ USER STORIES
 	* all-time ranking next to user name (stretch)
 	* most recent user score under name and nickname
 	* top 10 high scores list from all users (stretch)
-	* simon interface that includes 6 colored squares in the main container 
-	* game controller interface in smaller container below simon interface, with the same 6 colored squares
+	* simon interface that includes 4 colored squares in the main container 
+	* game controller interface in smaller container below simon interface, with the same 4 colored squares
 	* start button at top of simon interface
 4. User clicks start: 
 	* Random colored squares glow (with CSS) one at a time 4 times
