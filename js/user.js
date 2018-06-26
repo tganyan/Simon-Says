@@ -2,6 +2,9 @@
 
 var userList = []
 
+
+// Helper functions 
+
 function sum (a,b) {
 	return a + b
 }
@@ -28,6 +31,9 @@ function getUserNames() {
 	return names
 }
 
+
+// User object constructor
+
 function User (name, nickname) {
 	this.name = name,
 	this.nickname = nickname,
@@ -44,6 +50,9 @@ function User (name, nickname) {
 
 	userList.push(this)
 }
+
+
+// Add new User object and nav to next page
 
 function addUser (name, nickname) {	
 	for (var i = 0; i < userList.length; i++) {
@@ -68,6 +77,9 @@ function addUser (name, nickname) {
 		}
 	}
 }
+
+
+// Run addUser function on button submit
 
 document.getElementById('user-submit').addEventListener('click',  function() {
 	addUser(getUserNames()[0], getUserNames()[1])
