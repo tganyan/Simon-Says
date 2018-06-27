@@ -1,9 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Welcome to Simon the game</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+	<article class="container item-fade" id="sign-in">
+		<h1>WELCOME TO SIMON THE GAME!</h1>
+		<h2>Please enter your name and a nickname<span class="subhead-msg">(your nickname will appear next to your score)</span></h2>
+		<div>
+			<input type="text" name="name" placeholder="Name McNamerson" id="user-name">
+			<input type="text" name="nickName" placeholder="The Namester" id="user-nickname">
+			<button type="submit" id="user-submit">start the game!</button>
+		</div>
+	</article>
 
+	<article class="container item-fade faded" id="game-app">
+		<div>
+			<img src="" class="logo">
+			<h2 class="logo-font">simon</h2>
+			<div class="container">
+				<div class="sidebar">
+					<h3 id="name"></h3>
+					<p id="recent-score"></p>
+					<ul id="high-scores">
+						<h3>High Scores</h3>
+					</ul>
+				</div>
+				<div class="main" id="game-container">
+					<div id="simon-squares" class="flex-container game-panel">
+						<div class="simon-square green" id="green"></div>
+						<div class="simon-square red" id="red"></div>
+						<div class="simon-square yellow" id="yellow"></div>
+						<div class="simon-square blue" id="blue"></div>
+					</div>
+					<div id="controller" class="flex-container control-panel">
+						<div class="simon-square simon-btn green" data-color="green"></div>
+						<div class="simon-square simon-btn red" data-color="red"></div>
+						<div class="simon-square simon-btn yellow" data-color="yellow"></div>
+						<div class="simon-square simon-btn blue" data-color="blue"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<article class="container item-fade" id="profile-page">
+		
+	</article>
+
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/user.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
 </body>
 </html>

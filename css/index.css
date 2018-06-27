@@ -1,0 +1,62 @@
+.item-fade {
+	opacity: 1;
+	transition: opacity .25s;
+}
+
+.faded {
+	opacity: 0;
+}
+
+.red {
+	background-color: #ff0000;
+}
+
+.yellow {
+	background-color: #ffff00;
+}
+
+.green {
+	background-color: #00ff00;
+}
+
+.blue {
+	background-color: #0000ff;
+}
+
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.simon-square {
+	height: 100px;
+	margin: 10px 10px 0 0;
+	width: calc(100% * (1/2) - 10px - 10px);
+}
+
+.container {
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.sidebar {
+	width: 30%;
+	float: left;
+}
+
+.main {
+	width: 70%;
+	float: left;
+}
+
+.control-panel {
+	height: 30%;
+	padding-top: 30px;
+	border-top: solid 1px black;
+}
+
+.game-panel {
+	height: 70%;
+	padding-bottom: 30px;
+}
