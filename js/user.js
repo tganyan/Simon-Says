@@ -60,9 +60,8 @@ function User (name, nickname) {
 function addUser (name, nickname) {	
 	for (var i = 0; i < userList.length; i++) {
 		if (userList[i].nickname === nickname) {
-			console.log('match')
-			break;
 			confirm(`${nickname} is already taken, are you this ${nickname}?`)
+			break;
 			if (confirm) {
 				new User(name, nickname)
 				break;
@@ -103,7 +102,16 @@ function getRank () {
 
 function mostRecent () {
 	var currentUser = getUserNames()[1];
-	console.log(currentUser)
+	var lastScore;
+
+	for (var i = 0; i < userList.length; i++) {
+		if (userList[i].nickname === currentUser) {
+			// lastScore = userList[i].allScores[allScores.length - 1]; 
+			// console.log(userList[i].allScores)
+			break;
+		}
+	}
+	// console.log(lastScore)
 }
 
 
@@ -116,7 +124,7 @@ function topTenUsers () {
 		sortedList.push({score: userList[i].highScore(), nickname: userList[i].nickname})		
 	}
 	sortedList.sort(compareFunction)
-	console.log(sortedList[3].score)
+	// console.log(sortedList[3].score)
 	
 	for (var j = 0; j < 10; j++) {
 		topTenArr.push(sortedList[j])

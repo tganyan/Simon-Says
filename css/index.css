@@ -32,6 +32,7 @@
 	height: 100px;
 	margin: 10px 10px 0 0;
 	width: calc(100% * (1/2) - 10px - 10px);
+	transition: box-shadow .25s;
 }
 
 .container {
@@ -59,4 +60,8 @@
 .game-panel {
 	height: 70%;
 	padding-bottom: 30px;
+}
+
+.highlight {
+	box-shadow: inset 0 0 100px #4f567d;
 }
