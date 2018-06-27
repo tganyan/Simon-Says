@@ -58,14 +58,7 @@ function pulse () {
 	element.classList.add('highlight')
 	setTimeout(function () {
 		element.classList.remove('highlight')
-	}, 300)
-
-	// for (var i = 0; i < counter; i++) {
-	// 	// element = getElement()
-	// 	// toggleHighlight(element)
-	// 	intervalis()
-	// 	clearInterval(intervalis)
-	// }	
+	}, 300)	
 }
 
 function renderPulse () {
