@@ -113,22 +113,15 @@ function topTenUsers () {
 	var topTenArr = []
 	var sortedList = []
 	for (var i = 0; i < 10; i++) {
-		sortedList.push(userList[i].highScore())		
+		sortedList.push({score: userList[i].highScore(), nickname: userList[i].nickname})		
 	}
 	sortedList.sort(compareFunction)
+	console.log(sortedList[3].score)
 	
 	for (var j = 0; j < 10; j++) {
 		topTenArr.push(sortedList[j])
 	}
 	return topTenArr
-}
-
-function renderTopTen () {
-	var topTen = topTenUsers();
-	for (var i = 0; i > 5; i++) {
-		// document.getElementById('high-scores').innerHTML = `<li>${topTen[i]}</li>`
-		console.log(topTen[i])
-	}
 }
 
 
