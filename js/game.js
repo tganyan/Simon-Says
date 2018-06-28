@@ -9,15 +9,36 @@ var gameSquares = [...document.getElementsByClassName('game-square')]
 
 // Tying user controls to their corresponding data color and populating userPicks
 
-for (var i = 0; i < userControls.length; i++) {
-	var control = userControls[i]
-	control.addEventListener('click', function () {
-		userPicks.push(this.dataset.color)
-		console.log(userPicks)
-	})
-
+function userButtons () {
+	for (var i = 0; i < userControls.length; i++) {
+		var control = userControls[i]
+		control.addEventListener('click', function () {
+			userPicks.push(this.dataset.color)
+		})
+	}
+	
 }
 
+
+// Award points per successful round, one point for each pick 
+
+function awardPoints () {
+	var userPosition = getUserPostion()
+	for (var i = 0; i < userPicks.length; i++) {
+		if (userPicks[i] == simonPicks[i]) {
+			console.log('match')
+			console.log(userList[userPosition])
+		}else {
+			console.log('mismatching')
+		}
+		if (i = userPicks.length) {
+			userList[userPosition].roundScores.push(i)
+			console.log(i)
+			break;
+		}
+	}	
+
+}
 
 // Helpers
 
@@ -39,117 +60,45 @@ function getElement () {
 }
 
 
-// function toggleHighlight(element){
-	
-// 	if(element.classList.contains('highlight')){
-// 		element.classList.remove('highlight')
-// 	} else {
-// 		element.classList.add('highlight')
-// 	}
-// }
-
-function pushSimon (index) {
-	simonPicks.push(simonColors[index])
-}
-
-
-function pulse () {
-	var element = getElement();
-	element.classList.add('highlight')
-	setTimeout(function () {
-		element.classList.remove('highlight')
-	}, 300)	
-}
-
 function renderPulse () {
-	var i = 0;
-	var pulser = setInterval(function () {
-		pulse()
-		i++
-		if (i < 5) {
-			clearInterval(pulser)
-		}
-	}, 600)
+	var count = 0;
+	var limit = 4;
+	var randomHighlight = setInterval(function() {
+		var id = getRandomID();
+		let selectedEl = document.getElementById(id);
+		selectedEl.classList.add('highlight')
+		simonPicks.push(id)
+		count++
+
+		setTimeout(function() {
+			selectedEl.classList.remove('highlight')
+			if (count === limit) {
+				clearInterval(randomHighlight)
+			}
+		}, 500);
+	}, 1000);
+	simonPicks = []
+	userPicks = []
 }
+
 
 
 function runSimon () {
-	for (var i = 0; i < 5; i++) {
-		renderPulse()
-	}
+	var counter = 4;
+	var iterator = 1;
+	userButtons();
+	renderPulse(counter);
+	// for (var i = 0; i < iterator; i++) {
+	// 	renderPulse(counter);
+	// 	if (userPicks.length === simonPicks.length && simonPicks.length > 0) {
+	// 		iterator++
+	// 		counter++
+	// 		continue;
+	// 	}
+	// 	else {
+	// 		break;
+	// 	}
+	// }		
 }
-
-// var random = getRandom();  pushSimon(random)
-
-
-
-
-
-
-
-
-
-
-
-// function simon (index, id) {
-// 		setInterval(function() {
-// 			// removal(id[index], 'highlight')
-// 			// addClass(id[index], 'highlight')
-// 			console.log(id[index])
-// 		}, 800)
-// 		// console.log(gameSquares[index])
-// }
-
-
-// var randomIndex = getRandom()
-// var randomID = simonColors[randomIndex]
-
-
-
-// simon(randomIndex, randomID)
-// // function runTheGame () {
-
-// // }
-
-
-// // function simon (index, id) {
-// // 	var element = document.getElementById(id).classList.add('highlight')
-// // 	setInterval(function() {
-// // 		document.getElementById(id).classList.remove('highlight')
-// // 		simonPicks.push(simonColors[index])
-// // 		console.log(`remove ${id}`)
-// // 	}, 800)
-
-
-// // 	var j = -1;
-
-// // 	setInterval(function () {
-// // 			removeall();
-// // 			j++;
-// // 			toggleClass(divs[j],"red");	
-// // 		},2000);
-// // }
-
-
-
-// // function runTheGame() {
-// // 	var picksCounter = 4;
-// // 	var firstDigit = 3;
-// // 	var timeout = firstDigit + 0 + 0 + 0;
-// // 	do {		
-// // 		for (var i = 0; i < picksCounter; i++) {
-// // 			var randomIndex = Math.floor(Math.random() * simonColors.length)
-// // 			var sqrID = simonColors[randomIndex]
-// // 			simon(randomIndex, sqrID)
-// // 		}
-// // 		simonPicks = []
-// // 		picksCounter++
-// // 	}while (picksCounter < 5)
-// // }
-
-
-
-
-
 
 

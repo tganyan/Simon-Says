@@ -14,6 +14,8 @@ body  {
 
 .faded {
 	opacity: 0;
+	visibility: hidden;
+  position: absolute;
 }
 
 .red {
@@ -96,13 +98,6 @@ body  {
 	cursor: pointer;
 }
 
-.shrink {
-	height: 0px;
-	padding: 0 !important;
-	margin: 0 !important;
-	visibility: hidden;
-}
-
 .squeeze-align {
 	text-align: center;
 	padding: 15vh 25vh 0 25vh;
@@ -134,7 +129,6 @@ body  {
 }
 
 .name-font-container {
-	max-width: 250px;
   padding-left: 10px;
 }
 
@@ -166,6 +160,10 @@ body  {
 	border-left: solid 1px;
 }
 
+.padding-left-sm {
+	padding-left: 15px;
+}
+
 .margin-none {
 	margin: 0;
 }
@@ -175,14 +173,21 @@ body  {
 }
 
 
-.btn-start {
-  background: #fff;
+.btn {
+	background: #fff;
   text-transform: uppercase;
+}
+
+.btn-start {
   position: absolute;
   left: 40%;
   top: 40%;
 }
 
-.btn-start:hover {
+.btn:hover {
 	cursor: pointer;
+}
+
+.user-list-header {
+	margin-bottom: 5px;
 }

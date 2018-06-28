@@ -32,7 +32,7 @@
 				</div>
 				<div class="main float padding-left border-left" id="game-container">
 					<div id="simon-squares" class="flex-container game-panel">
-						<button class="btn-start">start round</button>
+						<button id="start-game" class="btn btn-start">start round</button>
 						<h3 class="container margin-none uppercase">game panel</h3>
 						<div class="simon-square green game-square" id="green"></div>
 						<div class="simon-square red game-square" id="red"></div>
@@ -52,26 +52,32 @@
 		
 	</article>
 
-	<article class="container item-fade faded" id="profile-page">
-		<img src="" class="logo">
-		<h2 class="logo-font">simon</h2>
-		<div class="flex-container ">
-				<div class="sidebar">
-					<button>back to game</button>
+	<article class="item-fade faded" id="profile-page">
+		<div class="clearfix flex-container flex-vert-align padding-bot padding-left">
+			<img src="images/logo.svg" class="logo">
+			<h2 class="logo-font">simon</h2>
+		</div>	
+		<div class="clearfix padding-top border-top">
+			<div class="container ">
+				<div class="sidebar float padding-right">
+					<button class="btn" id="back-to-game">back to game</button>
 				</div>
-				<div class="main" >
-					<div id="prof-name" class="container"><span id="rank-profile"></span></div>
-					<div class="container">
+				<div class="main float padding-left border-left" >
+					<div id="prof-name" class="flex-container flex-vert-align uppercase"><span id="rank-profile" class="rank"></span></div>
+					<div class="clearfix">
 						<div>
-							<h3>performance stats</h3>
+							<h3 class="uppercase">performance stats</h3>
 							<ul id="stats-list"></ul>
 						</div>
-						<div id="recent-ten">
+						<h4 class="user-list-header">Last ten:</h4>
+						<ol id="recent-ten">
 							
-						</div>
+						</ol>
 					</div>
 				</div>
 			</div>
+		</div>
+		
 	</article>
 
 	<script type="text/javascript" src="js/user.js"></script>

@@ -36,11 +36,20 @@ function getUserNames() {
 }
 
 
+function getUserPostion () {
+	var currentUser = getUserNames()[1];
+	var userPosition = userList.findIndex(userList => userList.nickname === currentUser)
+	console.log(userPosition)
+	return userPosition
+}
+
+
 // User object constructor
 
 function User (name, nickname) {
 	this.name = name,
 	this.nickname = nickname,
+	this.roundScores = [],
 	this.allScores = [],
 	this.highScore = function () {
 		var sortedHigh = this.allScores.sort(compareFunction)
@@ -98,21 +107,7 @@ function getRank () {
 
 
 
-// Get most recent score
 
-function mostRecent () {
-	var currentUser = getUserNames()[1];
-	var lastScore;
-
-	for (var i = 0; i < userList.length; i++) {
-		if (userList[i].nickname === currentUser) {
-			// lastScore = userList[i].allScores[allScores.length - 1]; 
-			// console.log(userList[i].allScores)
-			break;
-		}
-	}
-	// console.log(lastScore)
-}
 
 
 // Create top ten list
@@ -132,6 +127,68 @@ function topTenUsers () {
 	return topTenArr
 }
 
+
+// Render stats
+
+// last ten scores from current user
+function lastTenUser () {
+	var userPosition = getUserPostion()
+	var userSessionPoints = userList[userPosition].allScores
+	if (userSessionPoints.length > 0) {
+		for (var i = 0; i < userSessionPoints.length; i++) {
+			document.getElementById('recent-ten').innerHTML += `<li>${userSessionPoints[i]}</li>`
+			console.log('true')
+		}
+	} else {
+		document.getElementById('recent-ten').innerHTML = `<h4 class="uppercase">play some rounds!</h4>`
+		console.log('false')
+	}	
+}
+
+// High score
+function getBestUserScore () {
+	var userPosition = getUserPostion()
+	var returnValue;
+
+	if (userList[userPosition].highScore() != undefined) {
+		returnValue = userList[userPosition].highScore()
+	}
+	else {
+		returnValue = ''
+	}
+
+	return returnValue
+}
+
+// Low score
+function getWorstUserScore () {
+	var userPosition = getUserPostion()
+	var returnValue;
+
+	if (userList[userPosition].lowScore() != undefined) {
+		returnValue = userList[userPosition].lowScore()
+	}
+	else {
+		returnValue = ''
+	}
+
+	return returnValue
+}
+
+// Get most recent score
+function mostRecent () {
+	var currentUser = getUserNames()[1];
+	var lastScore;
+
+	for (var i = 0; i < userList.length; i++) {
+		if (userList[i].nickname === currentUser) {
+			// lastScore = userList[i].allScores[allScores.length - 1]; 
+			// console.log(userList[i].allScores)
+			break;
+		}
+	}
+	// console.log(lastScore)
+}
 
 // Fake user accounts
 
