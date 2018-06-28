@@ -5,36 +5,42 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<article class="container item-fade" id="sign-in">
+	<article class="container item-fade squeeze-align" id="sign-in">
 		<h1>WELCOME TO SIMON THE GAME!</h1>
 		<h2>Please enter your name and a nickname<span class="subhead-msg">(your nickname will appear next to your score)</span></h2>
+		<p>Based on the classic 70s game, the objective here is to simply watch the pattern in the game panel and then click the controller squares to copy the pattern. Each round will get a littler faster and will add a new item to the pattern. Sign in below and click the start button on the next page!</p>
 		<div>
 			<input type="text" name="name" placeholder="Name McNamerson" id="user-name">
 			<input type="text" name="nickName" placeholder="The Namester" id="user-nickname">
-			<button type="submit" id="user-submit">start the game!</button>
+			<button type="submit" id="user-submit" class="submit-btn">start the game!</button>
 		</div>
 	</article>
 
-	<article class="container item-fade faded" id="game-app">
-		<div>
-			<img src="" class="logo">
+	<article class="item-fade faded" id="game-app">
+		<div class="clearfix flex-container flex-vert-align padding-bot padding-left">
+			<img src="images/logo.svg" class="logo">
 			<h2 class="logo-font">simon</h2>
-			<div class="container">
-				<div class="sidebar">
-					<div id="name"><span id="rank-game"></span></div>
+		</div>		
+		<div class="clearfix padding-top border-top">
+			<div class="container clearfix">
+				<div class="sidebar float padding-right">
+					<div id="name" class="flex-container flex-vert-align uppercase"><span id="rank-game" class="rank"></span></div>
 					<p id="recent-score"></p>
-					<ol id="high-scores">
+					<ol id="high-scores" class="padding-left">
 						<h3>High Scores</h3>
 					</ol>
 				</div>
-				<div class="main" id="game-container">
+				<div class="main float padding-left border-left" id="game-container">
 					<div id="simon-squares" class="flex-container game-panel">
-						<div class="simon-square green" id="green"></div>
-						<div class="simon-square red" id="red"></div>
-						<div class="simon-square yellow" id="yellow"></div>
-						<div class="simon-square blue" id="blue"></div>
+						<button class="btn-start">start round</button>
+						<h3 class="container margin-none uppercase">game panel</h3>
+						<div class="simon-square green game-square" id="green"></div>
+						<div class="simon-square red game-square" id="red"></div>
+						<div class="simon-square yellow game-square" id="yellow"></div>
+						<div class="simon-square blue game-square" id="blue"></div>
 					</div>
 					<div id="controller" class="flex-container control-panel">
+						<h3 class="container margin-none uppercase">game controller</h3>
 						<button class="simon-square simon-btn green" data-color="green"></button>
 						<button class="simon-square simon-btn red" data-color="red"></button>
 						<button class="simon-square simon-btn yellow" data-color="yellow"></button>
@@ -43,12 +49,13 @@
 				</div>
 			</div>
 		</div>
+		
 	</article>
 
 	<article class="container item-fade faded" id="profile-page">
 		<img src="" class="logo">
 		<h2 class="logo-font">simon</h2>
-		<div class="container">
+		<div class="flex-container ">
 				<div class="sidebar">
 					<button>back to game</button>
 				</div>
