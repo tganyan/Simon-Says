@@ -77,7 +77,6 @@ function addUser (name, nickname) {
 			break;
 			if (confirm) {
 				currentUser = userList[getUserPosition()]
-				console.log('not cancelled')
 				break;
 			}
 			else {
@@ -124,7 +123,6 @@ function topTenUsers () {
 		sortedList.push({score: userList[i].highScore(), nickname: userList[i].nickname})		
 	}
 	sortedList.sort(compareFunction)
-	// console.log(sortedList[3].score)
 	
 	for (var j = 0; j < 10; j++) {
 		topTenArr.push(sortedList[j])
@@ -142,11 +140,9 @@ function lastTenUser () {
 	if (userSessionPoints.length > 0) {
 		for (var i = 0; i < userSessionPoints.length; i++) {
 			document.getElementById('recent-ten').innerHTML += `<li>${userSessionPoints[i]}</li>`
-			console.log('true')
 		}
 	} else {
 		document.getElementById('recent-ten').innerHTML = `<h4 class="uppercase">play some rounds!</h4>`
-		console.log('false')
 	}	
 }
 
@@ -180,31 +176,18 @@ function getWorstUserScore () {
 	return returnValue
 }
 
-// Get most recent score
-function mostRecent () {
-	var currentUser = getUserNames()[1];
-	var lastScore;
 
-	for (var i = 0; i < userList.length; i++) {
-		if (userList[i].nickname === currentUser) {
-			// lastScore = userList[i].allScores[allScores.length - 1]; 
-			// console.log(userList[i].allScores)
-			break;
-		}
-	}
-	// console.log(lastScore)
-}
 
 // Fake user accounts
 
-new User('Tyler Nesheim', 'MisterMudfrog').allScores = [100,280,330,43,58]
-new User('Chris Fleming', 'BogaFlem').allScores = [500,250,430,300,58]
-new User('Tony Garcia', 'MondragonT').allScores = [58,76,330,500,20]
-new User('Dave Kensington', 'DAVE_CB').allScores = [58,76,330,400,20]
-new User('Chris Eisenbraun', 'YippyTime').allScores = [58,76,330,400,20]
-new User('Chad Pinkelman', 'StinkyPinky').allScores = [58,76,330,400,20]
-new User('Carl Davis', 'Fatnicity').allScores = [58,76,330,600,20]
-new User('Joey McManus', 'Baby Joe').allScores = [58,76,330,750,20]
-new User('Trey Smick', 'Slim').allScores = [58,76,330,400,20]
-new User('Tyler Anyan', 'MisterMiyagi').allScores = [58,76,330,600,20]
+new User('Tyler Nesheim', 'MisterMudfrog').allScores = [10,28,33,43,58]
+new User('Chris Fleming', 'BogaFlem').allScores = [50,25,43,30,58]
+new User('Tony Garcia', 'MondragonT').allScores = [58,76,30,10,20]
+new User('Dave Kensington', 'DAVE_CB').allScores = [58,76,33,4,20]
+new User('Chris Eisenbraun', 'YippyTime').allScores = [58,76,3,40,20]
+new User('Chad Pinkelman', 'StinkyPinky').allScores = [58,76,30,40,20]
+new User('Carl Davis', 'Fatnicity').allScores = [58,76,33,60,20]
+new User('Joey McManus', 'Baby Joe').allScores = [58,76,30,75,20]
+new User('Trey Smick', 'Slim').allScores = [58,76,33,40,20]
+new User('Tyler Anyan', 'MisterMiyagi').allScores = [58,76,33,60,20]
 new User('Odd Man', 'Out').allScores = [58,76,22,14,33]

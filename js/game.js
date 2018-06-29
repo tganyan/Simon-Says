@@ -9,6 +9,11 @@ var userControls = [...document.getElementsByClassName('simon-btn')]
 // Tying user controls to their corresponding data color and populating userPicks
 
 
+function arraysEqual(a1,a2) {
+    return JSON.stringify(a1)==JSON.stringify(a2);
+}
+
+
 var control;
 for (var i = 0; i < userControls.length; i++) {
 	control = userControls[i]
@@ -23,32 +28,22 @@ for (var i = 0; i < userControls.length; i++) {
 
 function roundEnd() {
 	var userPosition = getUserPosition();
-	var roundMatch;
 
-	for (var i = 0; i < userPicks.length; i++) {
-		if (userPicks[i] === simonPicks[i]) {
-			roundMatch = true;
-			console.log(roundMatch)
-			
-		} else if (userPicks[i] != simonPicks[i]) {
-			roundMatch = false
-			console.log(roundMatch)
-			
-		}
-	}
+	var equality = arraysEqual(userPicks, simonPicks)
 
-	if (roundMatch === true) {
+	if (equality === true) {
 		awardPoints(userPicks.length)
 		document.getElementById('next-round-container').classList.remove('faded');
 		document.getElementById('next-round').addEventListener('click', runSimon);
 
-	}	else if (roundMatch === false) {
+	}	else if (equality === false) {
 		var allRoundScores = userList[userPosition].roundScores
 		var gameScore = operator(allRoundScores, sum)
 		if (gameScore === undefined) {
 			gameScore = '0';
 		}
 		userList[userPosition].allScores.push(gameScore);
+		userList[userPosition].roundScores = []
 		document.getElementById('restart-game-container').classList.remove('faded')
 		document.getElementById('next-round-container').classList.add('faded')
 		document.getElementById('game-score').innerHTML = `game over. your score: ${gameScore}`
@@ -61,8 +56,7 @@ function roundEnd() {
 
 function awardPoints (roundPoints) {
 	var userPosition = getUserPosition()
-	userList[userPosition].roundScores.push(roundPoints)
-	console.log(userList[userPosition].roundScores)	
+	userList[userPosition].roundScores.push(roundPoints)	
 }	
 
 // Get random number and then random id for simonColors array
@@ -107,19 +101,8 @@ function renderPulse () {
 
 // run Simon function
 
-
-
-
-
-
-
-
-
-
-
 function runSimon () {
 	var counter = 4;
-	var iterator = 1;
 	
 	document.getElementById('next-round-container').classList.add('faded')
 	document.getElementById('restart-game-container').classList.add('faded')
