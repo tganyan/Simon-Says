@@ -3,47 +3,6 @@
 var userList = []
 
 
-// Helper functions 
-
-function sum (a,b) {
-	return a + b
-}
-
-function compareFunction (a,b) {
-	return b - a
-}
-
-function operator (arr, operator) {
-	var result = arr[0]
-	for (var i = 0; i < arr.length; i++) {
-		if (arr[i + 1]) {
-			result = operator(result, arr[i + 1])
-		}
-	}
-	return result
-}
-
-function getUserNames() {
-	var names = []
-	var userName = document.getElementById('user-name').value;
-	var userNickName = document.getElementById('user-nickname').value;
-	var userNameStorage = localStorage.setItem("userName", userName)
-	var userNickNameStorage = localStorage.setItem("userNickName", userNickName)
-	var getName = localStorage.getItem("userName")
-	var getNickName = localStorage.getItem("userNickName")
-	names.push.apply(names, [getName, getNickName])
-	return names
-}
-
-
-function getUserPostion () {
-	var currentUser = getUserNames()[1];
-	var userPosition = userList.findIndex(userList => userList.nickname === currentUser)
-	console.log(userPosition)
-	return userPosition
-}
-
-
 // User object constructor
 
 function User (name, nickname) {
@@ -64,6 +23,51 @@ function User (name, nickname) {
 }
 
 
+// Helper functions 
+
+function sum (a,b) {
+	return a + b
+}
+
+function compareFunction (a,b) {
+	return b - a
+}
+
+function operator (arr, operator) {
+	var result = arr[0]
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i + 1]) {
+			result = operator(result, arr[i + 1])
+		}
+	}
+	return result
+}
+
+
+// Get current user and store in localstorage (may be unnecessary, mark for cleanup)
+
+function getUserNames() {
+	var names = []
+	var userName = document.getElementById('user-name').value;
+	var userNickName = document.getElementById('user-nickname').value;
+	var userNameStorage = localStorage.setItem("userName", userName)
+	var userNickNameStorage = localStorage.setItem("userNickName", userNickName)
+	var getName = localStorage.getItem("userName")
+	var getNickName = localStorage.getItem("userNickName")
+	names.push.apply(names, [getName, getNickName])
+	return names
+}
+
+
+// Get index position of current user in userList array
+
+function getUserPosition (manualName) {
+	var currentUser = getUserNames()[1];
+	var userPosition = userList.findIndex(userList => userList.nickname === currentUser)
+	return userPosition
+}
+
+
 // Add new User object and nav to next page
 
 function addUser (name, nickname) {	
@@ -72,7 +76,8 @@ function addUser (name, nickname) {
 			confirm(`${nickname} is already taken, are you this ${nickname}?`)
 			break;
 			if (confirm) {
-				new User(name, nickname)
+				currentUser = userList[getUserPosition()]
+				console.log('not cancelled')
 				break;
 			}
 			else {
@@ -132,7 +137,7 @@ function topTenUsers () {
 
 // last ten scores from current user
 function lastTenUser () {
-	var userPosition = getUserPostion()
+	var userPosition = getUserPosition()
 	var userSessionPoints = userList[userPosition].allScores
 	if (userSessionPoints.length > 0) {
 		for (var i = 0; i < userSessionPoints.length; i++) {
@@ -147,7 +152,7 @@ function lastTenUser () {
 
 // High score
 function getBestUserScore () {
-	var userPosition = getUserPostion()
+	var userPosition = getUserPosition()
 	var returnValue;
 
 	if (userList[userPosition].highScore() != undefined) {
@@ -162,7 +167,7 @@ function getBestUserScore () {
 
 // Low score
 function getWorstUserScore () {
-	var userPosition = getUserPostion()
+	var userPosition = getUserPosition()
 	var returnValue;
 
 	if (userList[userPosition].lowScore() != undefined) {

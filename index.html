@@ -33,6 +33,16 @@
 				<div class="main float padding-left border-left" id="game-container">
 					<div id="simon-squares" class="flex-container game-panel">
 						<button id="start-game" class="btn btn-start">start round</button>
+						<div id="next-round-container" class="btn-next-container absolute-container faded">
+							<button id="next-round" class="btn  ">next round</button>
+							<p id="next-round-msg" class="uppercase">success!</p>
+						</div>
+						
+						<div id="restart-game-container" class="faded absolute-container">
+							<button id="restart-game" class="btn">start round</button>
+							<p id="game-score" class="uppercase"></p>
+						</div>
+						
 						<h3 class="container margin-none uppercase">game panel</h3>
 						<div class="simon-square green game-square" id="green"></div>
 						<div class="simon-square red game-square" id="red"></div>
@@ -70,9 +80,7 @@
 							<ul id="stats-list"></ul>
 						</div>
 						<h4 class="user-list-header">Last ten:</h4>
-						<ol id="recent-ten">
-							
-						</ol>
+						<ol id="recent-ten"></ol>
 					</div>
 				</div>
 			</div>

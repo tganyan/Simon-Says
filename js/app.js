@@ -9,7 +9,7 @@ function loadLanding () {
 }
 
 
-// Render current username
+// Render current username and info
 
 function renderCurrentUser (targetID, headerLevel, rankID, isLink, width, headerID) {
 	var currentUser = getUserNames();
@@ -34,7 +34,7 @@ function renderCurrentUser (targetID, headerLevel, rankID, isLink, width, header
 			document.getElementById('game-app').classList.add('faded');
 			document.getElementById('profile-page').classList.remove('faded');
 			renderCurrentUser('prof-name', 'h2', 'rank-profile', false, '500px', 'profile-header')
-			if (document.getElementById('recent-ten').innerHTML === '') {
+			if (!document.getElementById('recent-ten').innerHTML.length) {
 				lastTenUser()
 			}
 			if (document.getElementById('stats-list').innerHTML === '') {
@@ -73,7 +73,7 @@ function renderTopTen () {
 function renderStats () {
 	var highScore = getBestUserScore();
 	var lowScore = getWorstUserScore();
-	var userPosition = getUserPostion();
+	var userPosition = getUserPosition();
 	var scoringPosition = userList[userPosition].allScores
 	var recentScore;
 	if (scoringPosition.length > 1) {
@@ -100,8 +100,8 @@ window.onload = function () {
 // Game start
 
 document.getElementById('start-game').addEventListener('click', function () {
+	document.getElementById('start-game').classList.add('faded')
 	runSimon()
-	simonPicks = []
 })
 
 

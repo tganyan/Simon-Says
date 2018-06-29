@@ -4,43 +4,60 @@ var simonColors = ['green', 'red', 'yellow', 'blue']
 var simonPicks = []
 var userPicks = []
 var userControls = [...document.getElementsByClassName('simon-btn')]
-var gameSquares = [...document.getElementsByClassName('game-square')]
 
 
 // Tying user controls to their corresponding data color and populating userPicks
 
-function userButtons () {
-	for (var i = 0; i < userControls.length; i++) {
-		var control = userControls[i]
-		control.addEventListener('click', function () {
-			userPicks.push(this.dataset.color)
-		})
-	}
-	
+
+var control;
+for (var i = 0; i < userControls.length; i++) {
+	control = userControls[i]
+	control.addEventListener('click', function () {
+		userPicks.push(this.dataset.color)
+		// compare userPicks to simonPicks
+		// if userPicks.length === simonPicks.length
+		// 		than either start next round or 
+		//		show score and feedback
+		if (userPicks.length === simonPicks.length) {
+			roundEnd()
+		}
+	})
+}
+
+
+function roundEnd() {
+	var userPosition = getUserPosition()
+
+	for (var i = 0; i < userPicks.length; i++) {
+		if (userPicks[i] === simonPicks[i]) {
+			awardPoints(userPicks.length)
+			document.getElementById('next-round-container').classList.remove('faded');
+			document.getElementById('next-round').addEventListener('click', runSimon);
+		} else if (userPicks[i] != simonPicks[i]) {
+			var allRoundScores = userList[userPosition].roundScores
+			var gameScore = operator(allRoundScores, sum)
+			if (gameScore === undefined) {
+				gameScore = '0';
+			}
+			userList[userPosition].allScores.push(gameScore);
+			document.getElementById('restart-game-container').classList.remove('faded')
+			document.getElementById('next-round-container').classList.add('faded')
+			document.getElementById('game-score').innerHTML = `game over. your score: ${gameScore}`
+			document.getElementById('restart-game').addEventListener('click', runSimon)
+		}
+	}	
 }
 
 
 // Award points per successful round, one point for each pick 
 
-function awardPoints () {
-	var userPosition = getUserPostion()
-	for (var i = 0; i < userPicks.length; i++) {
-		if (userPicks[i] == simonPicks[i]) {
-			console.log('match')
-			console.log(userList[userPosition])
-		}else {
-			console.log('mismatching')
-		}
-		if (i = userPicks.length) {
-			userList[userPosition].roundScores.push(i)
-			console.log(i)
-			break;
-		}
-	}	
+function awardPoints (roundPoints) {
+	var userPosition = getUserPosition()
+	userList[userPosition].roundScores.push(roundPoints)
+	console.log(userList[userPosition].roundScores)	
+}	
 
-}
-
-// Helpers
+// Get random number and then random id for simonColors array
 
 function getRandom () {
 	var randomIndex = Math.floor(Math.random() * simonColors.length)
@@ -53,12 +70,9 @@ function getRandomID () {
 	return id
 }
 
-function getElement () {
-	var random = getRandomID()
-	var el = document.getElementById(random)
-	return el
-}
 
+
+// Add and remove highlight class at timed interval
 
 function renderPulse () {
 	var count = 0;
@@ -83,22 +97,25 @@ function renderPulse () {
 
 
 
+// run Simon function
+
+
+
+
+
+
+
+
+
+
+
 function runSimon () {
 	var counter = 4;
 	var iterator = 1;
-	userButtons();
-	renderPulse(counter);
-	// for (var i = 0; i < iterator; i++) {
-	// 	renderPulse(counter);
-	// 	if (userPicks.length === simonPicks.length && simonPicks.length > 0) {
-	// 		iterator++
-	// 		counter++
-	// 		continue;
-	// 	}
-	// 	else {
-	// 		break;
-	// 	}
-	// }		
+	
+	document.getElementById('next-round-container').classList.add('faded')
+	document.getElementById('restart-game-container').classList.add('faded')
+	renderPulse(counter);		
 }
 
 
