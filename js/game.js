@@ -14,10 +14,6 @@ for (var i = 0; i < userControls.length; i++) {
 	control = userControls[i]
 	control.addEventListener('click', function () {
 		userPicks.push(this.dataset.color)
-		// compare userPicks to simonPicks
-		// if userPicks.length === simonPicks.length
-		// 		than either start next round or 
-		//		show score and feedback
 		if (userPicks.length === simonPicks.length) {
 			roundEnd()
 		}
@@ -26,26 +22,38 @@ for (var i = 0; i < userControls.length; i++) {
 
 
 function roundEnd() {
-	var userPosition = getUserPosition()
+	var userPosition = getUserPosition();
+	var roundMatch;
 
 	for (var i = 0; i < userPicks.length; i++) {
 		if (userPicks[i] === simonPicks[i]) {
-			awardPoints(userPicks.length)
-			document.getElementById('next-round-container').classList.remove('faded');
-			document.getElementById('next-round').addEventListener('click', runSimon);
+			roundMatch = true;
+			console.log(roundMatch)
+			
 		} else if (userPicks[i] != simonPicks[i]) {
-			var allRoundScores = userList[userPosition].roundScores
-			var gameScore = operator(allRoundScores, sum)
-			if (gameScore === undefined) {
-				gameScore = '0';
-			}
-			userList[userPosition].allScores.push(gameScore);
-			document.getElementById('restart-game-container').classList.remove('faded')
-			document.getElementById('next-round-container').classList.add('faded')
-			document.getElementById('game-score').innerHTML = `game over. your score: ${gameScore}`
-			document.getElementById('restart-game').addEventListener('click', runSimon)
+			roundMatch = false
+			console.log(roundMatch)
+			
 		}
-	}	
+	}
+
+	if (roundMatch === true) {
+		awardPoints(userPicks.length)
+		document.getElementById('next-round-container').classList.remove('faded');
+		document.getElementById('next-round').addEventListener('click', runSimon);
+
+	}	else if (roundMatch === false) {
+		var allRoundScores = userList[userPosition].roundScores
+		var gameScore = operator(allRoundScores, sum)
+		if (gameScore === undefined) {
+			gameScore = '0';
+		}
+		userList[userPosition].allScores.push(gameScore);
+		document.getElementById('restart-game-container').classList.remove('faded')
+		document.getElementById('next-round-container').classList.add('faded')
+		document.getElementById('game-score').innerHTML = `game over. your score: ${gameScore}`
+		document.getElementById('restart-game').addEventListener('click', runSimon)
+	}
 }
 
 
